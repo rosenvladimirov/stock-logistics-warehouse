@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* partner_location_auto_create
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0-20181119\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-12 13:07+0000\n"
+"PO-Revision-Date: 2018-12-12 13:07+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: partner_location_auto_create
+#: model:ir.ui.view,arch_db:partner_location_auto_create.view_company_partner_location_form
+msgid "Comapny Logistics"
+msgstr "Comapny Logistics"
+
+#. module: partner_location_auto_create
+#: model:ir.model,name:partner_location_auto_create.model_res_company
+msgid "Companies"
+msgstr "Companii"
+
+#. module: partner_location_auto_create
+#: model:ir.model,name:partner_location_auto_create.model_res_partner
+msgid "Contact"
+msgstr "Contact"
+
+#. module: partner_location_auto_create
+#: model:ir.ui.view,arch_db:partner_location_auto_create.view_company_partner_location_form
+msgid "Customer & Supplier default location"
+msgstr "Customer & Supplier default location"
+
+#. module: partner_location_auto_create
+#: model:ir.model.fields,field_description:partner_location_auto_create.field_res_company_default_customer_location
+msgid "Default Customer Location"
+msgstr "Default Customer Location"
+
+#. module: partner_location_auto_create
+#: model:ir.model.fields,field_description:partner_location_auto_create.field_res_company_default_supplier_location
+msgid "Default Supplier Location"
+msgstr "Default Supplier Location"
+
+#. module: partner_location_auto_create
+#: model:ir.model,name:partner_location_auto_create.model_stock_location
+msgid "Inventory Locations"
+msgstr "Locații inventar"
+
+#. module: partner_location_auto_create
+#: code:addons/partner_location_auto_create/models/res_partner.py:45
+#: model:ir.model.fields,field_description:partner_location_auto_create.field_res_partner_location_ids
+#: model:ir.model.fields,field_description:partner_location_auto_create.field_res_users_location_ids
+#: model:ir.ui.view,arch_db:partner_location_auto_create.view_partner_location_buttons
+#, python-format
+msgid "Locations"
+msgstr "Locații"
+
+#. module: partner_location_auto_create
+#: model:ir.model.fields,field_description:partner_location_auto_create.field_res_partner_locations_count
+#: model:ir.model.fields,field_description:partner_location_auto_create.field_res_users_locations_count
+msgid "Locations Count"
+msgstr "Locations Count"
+
+#. module: partner_location_auto_create
+#: model:ir.model.fields,field_description:partner_location_auto_create.field_stock_location_main_partner_location
+msgid "Main Partner Location"
+msgstr "Main Partner Location"
+
+#. module: partner_location_auto_create
+#: code:addons/partner_location_auto_create/models/stock_location.py:42
+#, python-format
+msgid "The partner %s already has a main location of type %s."
+msgstr "The partner %s already has a main location of type %s."
+
+#. module: partner_location_auto_create
+#: model:ir.model.fields,help:partner_location_auto_create.field_stock_location_main_partner_location
+msgid "The root location for a partner's location for a specific type."
+msgstr "The root location for a partner's location for a specific type."
+

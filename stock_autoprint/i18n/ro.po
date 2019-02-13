@@ -1,0 +1,65 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* stock_autoprint
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0-20181119\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-12 14:00+0000\n"
+"PO-Revision-Date: 2018-12-12 14:00+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_product_product_auto_packing
+#: model:ir.model.fields,field_description:stock_autoprint.field_product_template_auto_packing
+msgid "Auto packing label"
+msgstr "Auto packing label"
+
+#. module: stock_autoprint
+#: model:ir.model,name:stock_autoprint.model_stock_move_line
+msgid "Packing Operation"
+msgstr "Operație ambalare"
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_move.py:49
+#, python-format
+msgid "Please process some quantities to put in the pack first!"
+msgstr "Please process some quantities to put in the pack first!"
+
+#. module: stock_autoprint
+#: model:ir.model,name:stock_autoprint.model_product_template
+msgid "Product Template"
+msgstr "Șablon produs"
+
+#. module: stock_autoprint
+#: model:ir.model.fields,help:stock_autoprint.field_product_product_auto_packing
+#: model:ir.model.fields,help:stock_autoprint.field_product_template_auto_packing
+msgid "Set up if needed to create package when use in pickings. For example when use the box in BOM the picking movement will be generate new package label."
+msgstr "Set up if needed to create package when use in pickings. For example when use the box in BOM the picking movement will be generate new package label."
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_stock_move_operations_split
+msgid "Split"
+msgstr "Split"
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_move_line_split_line
+msgid "Splited"
+msgstr "Splited"
+
+#. module: stock_autoprint
+#: model:ir.model,name:stock_autoprint.model_stock_move
+msgid "Stock Move"
+msgstr "Mișcare stoc"
+
+#. module: stock_autoprint
+#: model:ir.model,name:stock_autoprint.model_stock_picking
+msgid "Transfer"
+msgstr "Transfer"
+

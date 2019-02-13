@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_move_operations_split" model="ir.ui.view">
+        <field name="name">stock.move.operations.split.form</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_stock_move_operations"/>
+        <field name="arch" type="xml">
+            <xpath expr="//footer/button" position="before">
+                <button name="action_split_row" string="Split" type="object"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_stock_move_line_operation_split_tree" model="ir.ui.view">
+        <field name="name">stock.move.line.operations.split.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+        <field name="arch" type="xml">
+            <field name="lot_id" position="after">
+                <field name="has_tracking" invisible="1"/>
+                <field name="split_lot_id" attrs="{'readonly': [('in_entire_package', '=', True)]}" invisible="not context.get('show_lots_m2o')" domain="[('product_id', '=', parent.product_id)]" groups="stock.group_production_lot" context="{'default_product_id': parent.product_id, 'active_picking_id': picking_id, 'default_range_qty': product_uom_qty}"/>
+            </field>
+            <field name="lot_id" position="attributes">
+                <attribute name="attrs">{'readonly': ['|', ('in_entire_package', '=', True), ('has_tracking', '=', 'serialrange')]}</attribute>
+            </field>
+            <field name="qty_done" position="before">
+                <field name="package_qty"/>
+            </field>
+        </field>
+    </record>
+</odoo>
