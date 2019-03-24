@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_picking_form" model="ir.ui.view">
+            <field name="name">stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[1]/field[@name='move_line_ids']/tree/field[@name='qty_done']" position="before">
+                    <field name="ordered_qty" readonly="1"/>
+                </xpath>
+                <xpath expr="//notebook/page[1]/field[@name='move_line_ids']/tree" position="inside">
+                    <button name="action_split_row" string="Split" type="object" icon="fa fa-columns" context="{'move_line_id': active_id}"/>
+                </xpath>
+            </field>
+        </record>
+</odoo>

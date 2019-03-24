@@ -63,7 +63,7 @@ class StockMove(models.Model):
                             # Force Update before to write
                             #operation.move_id._update_reserved_quantity(quantity_left_todo, quantity_left_todo, operation.location_id, lot_id=False, package_id=False, owner_id=False, strict=True)
                             new_operation = operation.with_context(ctx).copy(
-                                default={'product_uom_qty': 0, 'qty_done': operation.qty_done, 'split_line': True, 'split_lot_id': False})
+                                default={'product_uom_qty': 0, 'qty_done': operation.qty_done, 'split_line': True, 'split_lot_id': False, 'sequence': operation.sequence})
                             # Now write the last separated quantity and remove all data for lots and packages
                             operation.write({'product_uom_qty': quantity_left_todo, 'qty_done': operation.qty_done if line+1 < operation.package_qty else 0.0, 'package_qty': operation.package_qty if line+1 < operation.package_qty else 0.0, 'lot_id': False, 'result_package_id': False, 'split_lot_id': False})
                             new_operation.write({'product_uom_qty': done_to_keep, 'lot_id': lot_id and lot_id.id or False, 'package_qty': 1.0, 'result_package_id': result_package_id and result_package_id.id or False})

@@ -86,3 +86,11 @@ class Picking(models.Model):
 
                     operation_ids.write({'result_package_id': package.id})
         return package
+
+    def action_split_row(self):
+        if self._context.get('move_line_id', False):
+            move = self.env['stock.move.line'].browse(self._context['move_line_id']).mapped('move_id')
+            res = move._split_move_line()
+        return {
+                "type": "ir.actions.do_nothing",
+                }

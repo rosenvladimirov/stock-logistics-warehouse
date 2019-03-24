@@ -13,6 +13,7 @@
             'views/product_template_view.xml',
             'views/stock_move_views.xml',
             'views/stock_production_lot_views.xml',
+            'views/stock_picking_views.xml',
              ],
     'demo': [
              ],

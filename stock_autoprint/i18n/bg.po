@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0-20181119\n"
+"Project-Id-Version: Odoo Server 11.0+e-20190105\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-12 14:00+0000\n"
-"PO-Revision-Date: 2018-12-12 14:00+0000\n"
+"POT-Creation-Date: 2019-03-10 20:30+0000\n"
+"PO-Revision-Date: 2019-03-10 20:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,20 +22,35 @@ msgid "Auto packing label"
 msgstr "Auto packing label"
 
 #. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_move_line_split_lot_id
+msgid "Holded Lot for split"
+msgstr "Holded Lot for split"
+
+#. module: stock_autoprint
 #: model:ir.model,name:stock_autoprint.model_stock_move_line
 msgid "Packing Operation"
 msgstr "Операция за опаковане"
 
 #. module: stock_autoprint
-#: code:addons/stock_autoprint/models/stock_move.py:49
+#: model:ir.model,name:stock_autoprint.model_stock_quant_package
+msgid "Physical Packages"
+msgstr "Физически пакети"
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_move.py:61
 #, python-format
 msgid "Please process some quantities to put in the pack first!"
 msgstr "Please process some quantities to put in the pack first!"
 
 #. module: stock_autoprint
 #: model:ir.model,name:stock_autoprint.model_product_template
-msgid "Product Template"
-msgstr "Шаблон за продукт"
+msgid "Product Template (Multi-Company)"
+msgstr "Product Template (Multi-Company)"
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_move_line_has_tracking
+msgid "Product with Tracking"
+msgstr "Продукт с проследяване"
 
 #. module: stock_autoprint
 #: model:ir.model.fields,help:stock_autoprint.field_product_product_auto_packing
@@ -46,12 +61,12 @@ msgstr "Set up if needed to create package when use in pickings. For example whe
 #. module: stock_autoprint
 #: model:ir.ui.view,arch_db:stock_autoprint.view_stock_move_operations_split
 msgid "Split"
-msgstr "Split"
+msgstr "Отдели"
 
 #. module: stock_autoprint
 #: model:ir.model.fields,field_description:stock_autoprint.field_stock_move_line_split_line
 msgid "Splited"
-msgstr "Splited"
+msgstr "Отделени"
 
 #. module: stock_autoprint
 #: model:ir.model,name:stock_autoprint.model_stock_move
