@@ -49,10 +49,14 @@ class StockMove(models.Model):
                             operation_ids |= operation
                             # Write rest
                             if float_compare(current_qty_done, total_qty_done, precision_rounding=operation.product_uom_id.rounding) == 0:
-                                operation.write({'product_uom_qty': done_to_keep, 'qty_done': done_to_keep, 'package_qty': 1.0, 'lot_id': lot_id and lot_id.id or False, 'result_package_id': result_package_id and result_package_id.id or False, 'split_lot_id': False})
+                                done_to_keep = done_to_keep or operation.qty_done
+                                operation.write({'product_uom_qty': done_to_keep, 'qty_done': done_to_keep, 'package_qty': 1.0,
+                                                 'split_lot_id': False, 'split_line': True})
                                 break
                             elif float_compare(current_qty_done, total_qty_done, precision_rounding=operation.product_uom_id.rounding) > 0:
-                                operation.write({'product_uom_qty': operation.qty_done - (current_qty_done-total_qty_done), 'qty_done': operation.qty_done - (current_qty_done-total_qty_done), 'package_qty': 0, 'lot_id': lot_id.id, 'result_package_id': result_package_id.id, 'split_lot_id': False})
+                                operation.write({'product_uom_qty': operation.qty_done - (current_qty_done-total_qty_done),
+                                                 'qty_done': operation.qty_done - (current_qty_done-total_qty_done), 'package_qty': 0,
+                                                 'lot_id': lot_id and lot_id.id or False, 'result_package_id': result_package_id, 'split_lot_id': False})
                                 break
                         else:
                             lot_id = lot_id or operation.split_lot_id
@@ -61,13 +65,15 @@ class StockMove(models.Model):
                             done_to_keep = done_to_keep or operation.qty_done
 
                             # Force Update before to write
-                            #operation.move_id._update_reserved_quantity(quantity_left_todo, quantity_left_todo, operation.location_id, lot_id=False, package_id=False, owner_id=False, strict=True)
                             new_operation = operation.with_context(ctx).copy(
                                 default={'product_uom_qty': 0, 'qty_done': operation.qty_done, 'split_line': True, 'split_lot_id': False, 'sequence': operation.sequence})
                             # Now write the last separated quantity and remove all data for lots and packages
-                            operation.write({'product_uom_qty': quantity_left_todo, 'qty_done': operation.qty_done if line+1 < operation.package_qty else 0.0, 'package_qty': operation.package_qty if line+1 < operation.package_qty else 0.0, 'lot_id': False, 'result_package_id': False, 'split_lot_id': False})
-                            new_operation.write({'product_uom_qty': done_to_keep, 'lot_id': lot_id and lot_id.id or False, 'package_qty': 1.0, 'result_package_id': result_package_id and result_package_id.id or False})
-                            #_logger.info("_split-4=%s:%s" % (done_to_keep, operation))
+                            operation.write({'product_uom_qty': quantity_left_todo, 'qty_done': operation.qty_done if line+1 < operation.package_qty else 0.0,
+                                             'package_qty': operation.package_qty if line+1 < operation.package_qty else 0.0,
+                                             'lot_id': False, 'result_package_id': False, 'split_lot_id': False})
+                            new_operation.write({'product_uom_qty': done_to_keep, 'lot_id': lot_id and lot_id.id or False, 'package_qty': 1.0,
+                                                 'result_package_id': result_package_id,
+                                                 'owner_id': owner_id and owner_id.id or False})
                             operation_ids |= new_operation
             else:
                 raise UserError(_('Please process reserve some quantity!'))

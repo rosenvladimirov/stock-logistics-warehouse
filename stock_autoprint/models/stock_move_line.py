@@ -29,3 +29,9 @@ class StockMoveLine(models.Model):
     def _reorder(self, sequence):
         for x in self.search([('sequence', '>', sequence)], order="sequence"):
             x.sequence = x.sequence+1
+
+    def action_split_row(self):
+        res = self.move_id._split_move_line()
+        return {
+                "type": "ir.actions.do_nothing",
+                }
