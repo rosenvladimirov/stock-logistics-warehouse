@@ -52,11 +52,13 @@ class StockMove(models.Model):
                             if float_compare(current_qty_done, total_qty_done, precision_rounding=operation.product_uom_id.rounding) == 0:
                                 done_to_keep = done_to_keep or operation.qty_done
                                 operation.write({'product_uom_qty': done_to_keep, 'qty_done': done_to_keep, 'package_qty': 1.0,
+                                                 'sequence': line + 1,
                                                  'split_lot_id': False, 'split_line': True})
                                 break
                             elif float_compare(current_qty_done, total_qty_done, precision_rounding=operation.product_uom_id.rounding) > 0:
                                 operation.write({'product_uom_qty': operation.qty_done - (current_qty_done-total_qty_done),
                                                  'qty_done': operation.qty_done - (current_qty_done-total_qty_done), 'package_qty': 0,
+                                                 'sequence': line + 1,
                                                  'lot_id': lot_id and lot_id.id or False, 'result_package_id': result_package_id, 'split_lot_id': False})
                                 break
                         else:
@@ -71,10 +73,12 @@ class StockMove(models.Model):
                             # Now write the last separated quantity and remove all data for lots and packages
                             operation.write({'qty_done': operation.qty_done if line+1 < operation.package_qty else 0.0,
                                              'package_qty': operation.package_qty if line+1 < operation.package_qty else 0.0,
+                                             'sequence': line + 1,
                                              'lot_id': False, 'result_package_id': False, 'split_lot_id': False})
                             operation.write({'product_uom_qty': quantity_left_todo})
                             new_operation.write({'product_uom_qty': done_to_keep, 'lot_id': lot_id and lot_id.id or False, 'package_qty': 1.0,
                                                  'result_package_id': result_package_id,
+                                                 'sequence': line+1,
                                                  'owner_id': owner_id and owner_id.id or False})
                             operation_ids |= new_operation
             else:
