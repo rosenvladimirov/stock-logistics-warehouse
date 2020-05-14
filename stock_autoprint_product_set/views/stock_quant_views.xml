@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_quant_package_set_kanban">
+        <field name="name">stock.quant.package.kanban</field>
+        <field name="model">stock.quant.package</field>
+        <field name="inherit_id" ref="stock.view_quant_package_kanban" />
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='type']" position="after">
+                <field name="has_differens"/>
+            </xpath>
+            <xpath expr="//div[@name='icons']" position="inside">
+                <t t-if="record.has_differens.raw_value">
+                    <i style="margin-left:3px;" t-att-class="record.has_differens.raw_value ? 'fa fa-external-link text-error': 'fa fa-external-link text-success'"/>
+                </t>
+            </xpath>
+            <xpath expr="//strong[@name='pack_name']" position="after">
+                <span class="o_kanban_record_subtitle"><field name="product_set_id"/></span>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_quant_package_set_form">
+        <field name="name">stock.quant.package.form</field>
+        <field name="model">stock.quant.package</field>
+        <field name="inherit_id" ref="stock_autoprint.view_quant_package_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//kanban/field[@name='type']" position="after">
+                <field name="has_differens"/>
+            </xpath>
+            <xpath expr="//div[@name='icons']" position="inside">
+                <t t-if="record.has_differens.raw_value">
+                    <i t-att-class="record.has_differens.raw_value ? 'fa fa-external-link text-error': 'fa fa-external-link text-success'"/>
+                </t>
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_quant_package_form">
+        <field name="name">stock.quant.package.form</field>
+        <field name="model">stock.quant.package</field>
+        <field name="inherit_id" ref="stock.view_quant_package_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="location_id" invisible="1"/>
+                <button name="%(act_open_wizard_stock_package_from_set)d" string="Make from Set" type="action"
+                        context="{'default_package_id': active_id, 'default_location_id': location_id, 'default_product_set_id': product_set_id}"
+                        attrs="{'invisible':[('type','not in',['set'])]}"/>
+            </xpath>
+            <xpath expr="//group/group" position="after">
+                <group>
+                    <field name="product_set_id"/>
+                </group>
+            </xpath>
+            <xpath expr="//sheet/separator[1]" position="before">
+                <field name="has_differens" invisible="1"/>
+                <separator string="Content Difference" style="color: red;" attrs="{'invisible': [('has_differens', '=', False)]}"/>
+                <field name="product_set_lines" decoration-danger="True==True" attrs="{'invisible': [('has_differens', '=', False)]}">
+                    <tree>
+                       <field name="product_tmpl_id"/>
+                        <field name="product_id"/>
+                        <field name="quantity"/>
+                        <field name="price_unit"/>
+                        <field name="product_uom"/>
+                    </tree>
+                </field>
+            </xpath>
+            <!--
+            <xpath expr="//sheet/separator[1]" position="before">
+                <field name="has_differens" invisible="1"/>
+                <separator string="Content Differents" decoration-danger="True==True" attrs="{'invisible': [('has_differens', '=', False)]}"/>
+                <field name="set_product_ids" decoration-danger="True==True" attrs="{'invisible': [('has_differens', '=', False)]}">
+                    <tree>
+                        <field name="image_medium" widget="image" options='{"size": [128, 128]}'/>
+                        <field name="default_code"/>
+                        <field name="name"/>
+                        <field name="attribute_value_ids" widget="many2many_tags" groups="product.group_product_variant"/>
+                        <field name="lst_price"/>
+                        <field name="price" invisible="not context.get('pricelist',False)"/>
+                        <field name="uom_id" options="{'no_open': True, 'no_create': True}" groups="product.group_uom"/>
+                        <field name="barcode"/>
+                        <field name="product_tmpl_id" invisible="1"/>
+                        <field name="active" invisible="1"/>
+                    </tree>
+                </field>
+            </xpath>
+            -->
+        </field>
+    </record>
+</odoo>

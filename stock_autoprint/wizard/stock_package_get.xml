@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record id="stock_package_get_form_view" model="ir.ui.view">
+      <field name="name">stock.package.get.form.view</field>
+      <field name="model">stock.package.get</field>
+      <field name="arch" type="xml">
+          <form string="Get from package in stock move line">
+              <group>
+                  <field name="package_id"/>
+                  <field name="location_id" options="{'no_create_edit': True}" domain="[('usage', '=', 'internal')]"/>
+                  <field name="location_dest_id" options="{'no_create_edit': True}" domain="[('usage', '=', 'internal')]" autofocus="autofocus"/>
+                  <field name="package_dest_id"  options="{'no_create_edit': True}" domain="[('location_id', '=', location_dest_id)]"/>
+                  <field name="owner_id" options="{'no_create_edit': True}" readonly="1" force_save="1"/>
+              </group>
+              <group>
+                  <label for="quant_ids" string="Get from content" col="1"/>
+                  <field name="quant_ids" nolabel="1" col="3" placeholder="Keep empty to use all contents" widget="many2many_tags" options="{'open_view': True}" domain="[('id', 'in', curr_quant_ids)]"/>
+              </group>
+              <separator string="Content in package" colspan="4"/>
+              <field name="curr_quant_ids" nolabel="1" colspan="4"/>
+
+              <!--
+              <field name="quant_ids" nolabel="1" colspan="4" widget="one2many_list">
+                  <tree create="0" editable="bottom" delete="false">
+                    <field name="check_product"/>
+                    <field name="product_image_medium" widget="image" options='{"size": [128, 128]}'/>
+                    <field name="product_id"/>
+                    <field name="lot_id" groups="stock.group_production_lot"/>
+                    <field name="quantity"/>
+                    <field name="product_uom_id" groups="product.group_uom"/>
+                  </tree>
+              </field>
+              -->
+              <footer>
+                  <button name="get_from_package" string="Get from package"
+                          type="object" class="oe_highlight"
+                          />
+                  <button special="cancel" string="Cancel" class="oe_link"/>
+              </footer>
+          </form>
+      </field>
+  </record>
+
+  <record id="act_open_wizard_stock_package_get_from" model="ir.actions.act_window">
+      <field name="name">Get from package in stock move line</field>
+      <field name="res_model">stock.package.get</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="stock_package_get_form_view"/>
+      <field name="target">new</field>
+  </record>
+
+</odoo>

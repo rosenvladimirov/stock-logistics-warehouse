@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record id="stock_package_from_set_form_view" model="ir.ui.view">
+      <field name="name">stock.package.from.set.form.view</field>
+      <field name="model">stock.package.from.set</field>
+      <field name="arch" type="xml">
+          <form string="Move package in stock move line">
+              <group>
+                  <field name="package_id"/>
+                  <field name="product_set_id" domain="[('state', '=', 'progress')]" readonly="1"/>
+                  <field name="quantity" readonly="1"/>
+
+                  <field name="warehouse_id" readonly="1"/>
+                  <!--
+                  <field name="location_id" readonly="1"/>
+                  <field name="location_dest_id"/>
+                  -->
+                  <field name="owner_id"/>
+              </group>
+              <field name="set_lines">
+                   <tree string="Product set lines" create="1" editable="bottom">
+                       <field name="sequence" widget="handle"/>
+                       <field name="product_tmpl_id"/>
+                       <field name="product_id"/>
+                       <field name="quantity"/>
+                       <field name="product_uom"/>
+                   </tree>
+              </field>
+              <footer>
+                  <button name="make_package" string="Make package"
+                          type="object" class="oe_highlight"/>
+                  <button special="cancel" string="Cancel" class="oe_link"/>
+              </footer>
+          </form>
+      </field>
+  </record>
+
+  <record id="act_open_wizard_stock_package_from_set" model="ir.actions.act_window">
+      <field name="name">Make package from product set</field>
+      <field name="res_model">stock.package.from.set</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="stock_package_from_set_form_view"/>
+      <field name="target">new</field>
+  </record>
+
+</odoo>

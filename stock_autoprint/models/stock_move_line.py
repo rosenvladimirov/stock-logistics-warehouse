@@ -18,17 +18,17 @@ class StockMoveLine(models.Model):
     package_qty = fields.Integer('Qty packages', default=1, copy=False)
     sequence = fields.Integer(string='Sequence', required=True, default=_default_sequence)
 
-    def write(self, vals):
-        res = super(StockMoveLine, self).write(vals)
-        if vals.get('sequence', False) and not self._context.get('force_reorder', False):
-            sequence = vals['sequence'] + 1
-            self.with_context(dict(self._context, force_reorder=True))._reorder(sequence)
-            self.sequence += 1
-        return res
+    #def write(self, vals):
+    #    res = super(StockMoveLine, self).write(vals)
+    #    if vals.get('sequence', False) and not self._context.get('force_reorder', False):
+    #        sequence = vals['sequence'] + 1
+    #        self.with_context(dict(self._context, force_reorder=True))._reorder(sequence)
+    #        self.sequence += 1
+    #    return res
 
-    def _reorder(self, sequence):
-        for x in self.search([('sequence', '>', sequence)], order="sequence"):
-            x.sequence = x.sequence+1
+    #def _reorder(self, sequence):
+    #    for x in self.search([('sequence', '>', sequence)], order="sequence"):
+    #        x.sequence = x.sequence+1
 
     def action_split_row(self):
         res = self.move_id._split_move_line()

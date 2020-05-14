@@ -9,10 +9,12 @@
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
             <notebook position="inside">
-                <page string="Pickings" name="pickings">
+                <field name="has_picking_ids" invisible="1"/>
+                <field name="has_move_lines" invisible="1"/>
+                <page string="Pickings" name="pickings" attrs="{'invisible': [('has_picking_ids','=',False)]}">
                     <field name="picking_ids"/>
                 </page>
-                <page string="Detailed Operations" name="operations">
+                <page string="Detailed Operations" name="operations" attrs="{'invisible': [('has_move_lines','=',False)]}">
                     <field name="move_lines" readonly="1">
                         <tree editable="bottom" decoration-muted="(state == 'done' and is_locked == True)" decoration-danger="qty_done&gt;product_uom_qty and state!='done'" decoration-success="qty_done==product_uom_qty and state!='done'">
                             <field name="product_id" required="1" attrs="{'readonly': ['|', ('state', '=', 'done'), ('move_id', '!=', False)]}"/>
@@ -34,5 +36,37 @@
             </notebook>
         </field>
     </record>
-
+    <record id="invoice_supplier_form" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <field name="has_picking_ids" invisible="1"/>
+                <field name="has_move_lines" invisible="1"/>
+                <page string="Pickings" name="pickings" attrs="{'invisible': [('has_picking_ids','=',False)]}">
+                    <field name="picking_ids"/>
+                </page>
+                <page string="Detailed Operations" name="operations" attrs="{'invisible': [('has_move_lines','=',False)]}">
+                    <field name="move_lines" readonly="1">
+                        <tree editable="bottom" decoration-muted="(state == 'done' and is_locked == True)" decoration-danger="qty_done&gt;product_uom_qty and state!='done'" decoration-success="qty_done==product_uom_qty and state!='done'">
+                            <field name="product_id" required="1" attrs="{'readonly': ['|', ('state', '=', 'done'), ('move_id', '!=', False)]}"/>
+                            <field name="move_id" invisible="1"/>
+                            <field name="in_entire_package" invisible="1"/>
+                            <field name="product_uom_id" force_save="1" attrs="{'readonly': [('state', '!=', 'draft')]}" groups="product.group_uom"/>
+                            <field name="lots_visible" invisible="1"/>
+                            <field name="owner_id" groups="stock.group_tracking_owner"/>
+                            <field name="state" invisible="1"/>
+                            <field name="lot_id" groups="stock.group_production_lot" readonly="1" domain="[('product_id', '=', product_id)]"/>
+                            <field name="lot_name" groups="stock.group_production_lot" readonly="1"/>
+                            <field name="is_initial_demand_editable" invisible="1"/>
+                            <field name="is_locked" invisible="1"/>
+                            <field name="product_uom_qty" invisible="1"/>
+                            <field name="qty_done" readonly="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
 </odoo>

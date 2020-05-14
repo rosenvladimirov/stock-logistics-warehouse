@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <record id="stock_package_move_form_view" model="ir.ui.view">
+      <field name="name">stock.package.move.form.view</field>
+      <field name="model">stock.package.move</field>
+      <field name="arch" type="xml">
+          <form string="Move package in stock move line">
+              <group>
+                  <field name="package_id"/>
+                  <field name="location_id" options="{'no_create_edit': True}" domain="[('usage', '=', 'internal')]"/>
+                  <field name="location_dest_id" options="{'no_create_edit': True}" domain="[('usage', '=', 'internal')]"/>
+                  <field name="owner_id" options="{'no_create_edit': True}"/>
+              </group>
+              <footer>
+                  <button name="move_package" string="Move package"
+                          type="object" class="oe_highlight"/>
+                  <button special="cancel" string="Cancel" class="oe_link"/>
+              </footer>
+          </form>
+      </field>
+  </record>
+
+  <record id="act_open_wizard_stock_package_move" model="ir.actions.act_window">
+      <field name="name">Move package in stock move line</field>
+      <field name="res_model">stock.package.move</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="stock_package_move_form_view"/>
+      <field name="target">new</field>
+  </record>
+
+</odoo>

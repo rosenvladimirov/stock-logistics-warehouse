@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- stock.picking -->
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock_picking_invoice_link.stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//div[@name='button_box']" position="after">
+            <div>
+                <label for="is_initial_demand_editable">
+                Demand Editable
+                </label>
+                <field name="is_initial_demand_editable" widget="boolean_toggle"/>
+            </div>
+          </xpath>
+            <!--
+            <xpath expr="//page[@name='extra']/group/group" position="inside">
+                <field name="is_initial_demand_editable"/>
+            </xpath>
+            -->
+        </field>
+    </record>
+</odoo>

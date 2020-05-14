@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0+e-20190105\n"
+"Project-Id-Version: Odoo Server 11.0+e-20190711\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-10 20:30+0000\n"
-"PO-Revision-Date: 2019-03-10 20:30+0000\n"
+"POT-Creation-Date: 2019-08-01 07:54+0000\n"
+"PO-Revision-Date: 2019-08-01 07:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,375 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: stock_autoprint
+#: model:ir.model.fields,help:stock_autoprint.field_stock_quant_package_state
+msgid "* Local: When the package stay in local storages.\n"
+"* Packaging: This state can be seen when a package stay in packagin center.\n"
+"* On Way: This state is reached when the package is departing/arriving from/to company...\n"
+"* Delivered: When package is delivered in end customer/supplier destination."
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:283
+#: code:addons/stock_autoprint/models/stock_quant.py:331
+#, python-format
+msgid "<p class=\"oe_view_nocontent_create\">\n"
+"                            Click here to create a new transfer.\n"
+"                        </p><p>\n"
+"                            You can either do it immediately or mark it as Todo for future processing. Use your scanner to validate the transferred quantity quicker.\n"
+"                        </p>"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_active
+msgid "Active"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_picking_form
+msgid "Add from Pack"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_quant_package_form
+msgid "Add in Pack"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.stock_package_add_form_view
+msgid "Add package"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.actions.act_window,name:stock_autoprint.act_open_wizard_stock_package_add
+#: model:ir.ui.view,arch_db:stock_autoprint.stock_package_add_form_view
+msgid "Add package in stock move line"
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:273
+#: code:addons/stock_autoprint/models/stock_quant.py:321
+#, python-format
+msgid "All Package Transfers"
+msgstr ""
+
+#. module: stock_autoprint
 #: model:ir.model.fields,field_description:stock_autoprint.field_product_product_auto_packing
 #: model:ir.model.fields,field_description:stock_autoprint.field_product_template_auto_packing
 msgid "Auto packing label"
 msgstr ""
 
 #. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:114
+#: selection:stock.quant.package,type:0
+#, python-format
+msgid "Big bag"
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:117
+#: selection:stock.quant.package,type:0
+#, python-format
+msgid "Bus"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.stock_package_add_form_view
+#: model:ir.ui.view,arch_db:stock_autoprint.stock_package_move_form_view
+msgid "Cancel"
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:116
+#: selection:stock.quant.package,type:0
+#, python-format
+msgid "Car"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_child_ids
+msgid "Child Tags"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.actions.act_window,help:stock_autoprint.action_package_category_form
+msgid "Click to create a new package tag."
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_color
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_color
+msgid "Color Index"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model,name:stock_autoprint.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_complete_name
+msgid "Complete Name"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_package_category_list
+msgid "Contact Tags"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_package_move_create_uid
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_package_move_create_date
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_picking_result_package_id
+msgid "Default Destination Package"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,help:stock_autoprint.field_stock_package_move_owner_id
+msgid "Default Owner"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_picking_package_id
+msgid "Default Source Package"
+msgstr ""
+
+#. module: stock_autoprint
+#: selection:stock.quant.package,state:0
+msgid "Delivered"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_package_move_location_dest_id
+msgid "Destination Location"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_package_move_display_name
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:55
+#, python-format
+msgid "Error ! You can not create recursive tags."
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:200
+#, python-format
+msgid "Error ! You cannot create recursive included packages."
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_quant_filter
+msgid "Filters"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_production_lot_range_start
+msgid "First range number"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_quant_filter
+msgid "Group by..."
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_has_childs
+msgid "Has Childs"
+msgstr ""
+
+#. module: stock_autoprint
 #: model:ir.model.fields,field_description:stock_autoprint.field_stock_move_line_split_lot_id
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_production_lot_split_lot_id
 msgid "Holded Lot for split"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_package_move_id
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_id
+msgid "ID"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,help:stock_autoprint.field_stock_picking_result_package_id
+msgid "If set, the operations are packed into this package"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_move_line_product_image_medium
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_image
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_product_image_medium
+msgid "Image"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,help:stock_autoprint.field_stock_move_line_product_image_medium
+#: model:ir.model.fields,help:stock_autoprint.field_stock_quant_product_image_medium
+msgid "Image of the product variant (Medium-sized image of product template if false)."
+msgstr ""
+
+#. module: stock_autoprint
+#: selection:stock.quant.package,state:0
+msgid "In internal storage"
+msgstr ""
+
+#. module: stock_autoprint
+#: selection:stock.quant.package,state:0
+msgid "In packaging storage"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_child_ids
+msgid "Included Packages"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_quant_package_form
+msgid "Included packages"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_package_move___last_update
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_package_move_write_uid
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_package_move_write_date
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_parent_left
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_parent_left
+msgid "Left parent"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_location_name
+msgid "Location"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model,name:stock_autoprint.model_stock_production_lot
+msgid "Lot/Serial"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.actions.act_window,help:stock_autoprint.action_package_category_form
+msgid "Manage partner tags to better classify them for tracking and analysis purposes.\n"
+"                A partner may have several categories and categories have a hierarchical structure: a package with a category has also the parent category."
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_res_company_type_package_female
+#: model:ir.model.fields,field_description:stock_autoprint.field_res_company_type_package_male
+#: model:ir.model.fields,field_description:stock_autoprint.field_res_config_settings_type_package_female
+#: model:ir.model.fields,field_description:stock_autoprint.field_res_config_settings_type_package_male
+msgid "Max weight"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_image_medium
+msgid "Medium-sized image"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,help:stock_autoprint.field_stock_quant_package_image_medium
+msgid "Medium-sized image of the product. It is automatically resized as a 128x128px image, with aspect ratio preserved, only when the image exceeds one of those sizes. Use this field in form views or some kanban views."
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_quant_package_form
+msgid "Move Pack"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.stock_package_move_form_view
+msgid "Move package"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.actions.act_window,name:stock_autoprint.act_open_wizard_stock_package_move
+#: model:ir.ui.view,arch_db:stock_autoprint.stock_package_move_form_view
+msgid "Move package in stock move line"
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:113
+#: selection:stock.quant.package,type:0
+#, python-format
+msgid "Normal package"
+msgstr ""
+
+#. module: stock_autoprint
+#: selection:stock.quant.package,state:0
+msgid "On Way"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_package_move_owner_id
+#: model:ir.ui.view,arch_db:stock_autoprint.view_quant_filter
+msgid "Owner"
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_picking.py:136
+#, python-format
+msgid "PKG/%s"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_package_move_package_id
+msgid "Package"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_package_category_form
+msgid "Package Tag"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.actions.act_window,name:stock_autoprint.action_package_category_form
+#: model:ir.ui.menu,name:stock_autoprint.menu_package_category_form
+msgid "Package Tags"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_quant_package_form
+msgid "Package Traceability"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_package_ids
+#: model:ir.ui.menu,name:stock_autoprint.menu_package_category_in_config_stock
+#: model:ir.ui.view,arch_db:stock_autoprint.view_quant_filter
+msgid "Packages"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model,name:stock_autoprint.model_stock_quant_package_category
+msgid "Packages Tags"
 msgstr ""
 
 #. module: stock_autoprint
@@ -32,14 +393,31 @@ msgid "Packing Operation"
 msgstr ""
 
 #. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:115
+#: selection:stock.quant.package,type:0
+#, python-format
+msgid "Palete"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_parent_id
+msgid "Parent Category"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_parent_id
+msgid "Parent Package"
+msgstr ""
+
+#. module: stock_autoprint
 #: model:ir.model,name:stock_autoprint.model_stock_quant_package
 msgid "Physical Packages"
 msgstr ""
 
 #. module: stock_autoprint
-#: code:addons/stock_autoprint/models/stock_move.py:61
+#: code:addons/stock_autoprint/models/stock_move.py:86
 #, python-format
-msgid "Please process some quantities to put in the pack first!"
+msgid "Please process reserve some quantity!"
 msgstr ""
 
 #. module: stock_autoprint
@@ -48,8 +426,70 @@ msgid "Product Template (Multi-Company)"
 msgstr ""
 
 #. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_production_lot_tracking
+msgid "Product Tracking type"
+msgstr ""
+
+#. module: stock_autoprint
 #: model:ir.model.fields,field_description:stock_autoprint.field_stock_move_line_has_tracking
 msgid "Product with Tracking"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.actions.act_window,name:stock_autoprint.act_product_location_open
+msgid "Products"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_picking_form
+msgid "Put in Pack"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_move_line_package_qty
+msgid "Qty packages"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_quant_package_form
+msgid "Quantity"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_production_lot_range_qty
+msgid "Quantity per range"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model,name:stock_autoprint.model_stock_quant
+msgid "Quants"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_production_lot_form_ranges
+#: model:ir.ui.view,arch_db:stock_autoprint.view_production_lot_form_simple_ranges
+msgid "Range for this Lot/SN"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_red_weight_female
+msgid "Red Weight Female"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_red_weight_male
+msgid "Red Weight Male"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_parent_right
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_parent_right
+msgid "Right parent"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_save_move_line_ids
+msgid "Save Move Line"
 msgstr ""
 
 #. module: stock_autoprint
@@ -59,6 +499,29 @@ msgid "Set up if needed to create package when use in pickings. For example when
 msgstr ""
 
 #. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:120
+#: selection:stock.quant.package,type:0
+#, python-format
+msgid "Ship"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_image_small
+msgid "Small-sized image"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,help:stock_autoprint.field_stock_quant_package_image_small
+msgid "Small-sized image of the product. It is automatically resized as a 64x64px image, with aspect ratio preserved. Use this field anywhere a small image is required."
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_package_move_location_id
+msgid "Source Location"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_picking_form
 #: model:ir.ui.view,arch_db:stock_autoprint.view_stock_move_operations_split
 msgid "Split"
 msgstr ""
@@ -69,12 +532,101 @@ msgid "Splited"
 msgstr ""
 
 #. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_state
+msgid "Status"
+msgstr ""
+
+#. module: stock_autoprint
 #: model:ir.model,name:stock_autoprint.model_stock_move
 msgid "Stock Move"
 msgstr ""
 
 #. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_name
+msgid "Tag Name"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_category_id_14769
+msgid "Tags"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.ui.view,arch_db:stock_autoprint.view_quant_package_form
+msgid "Tags..."
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,help:stock_autoprint.field_stock_quant_package_category_active
+msgid "The active field allows you to hide the category without removing it."
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,help:stock_autoprint.field_stock_package_move_package_id
+msgid "The package containing this quant"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,help:stock_autoprint.field_stock_quant_package_image
+msgid "This field holds the image used as image for the product, limited to 1024x1024px."
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:119
+#: selection:stock.quant.package,type:0
+#, python-format
+msgid "Train"
+msgstr ""
+
+#. module: stock_autoprint
 #: model:ir.model,name:stock_autoprint.model_stock_picking
 msgid "Transfer"
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:118
+#: selection:stock.quant.package,type:0
+#, python-format
+msgid "Truck"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model.fields,field_description:stock_autoprint.field_stock_quant_package_type
+#: model:ir.ui.view,arch_db:stock_autoprint.view_quant_filter
+msgid "Type"
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:122
+#: selection:stock.quant.package,type:0
+#, python-format
+msgid "Virtual package"
+msgstr ""
+
+#. module: stock_autoprint
+#: selection:stock.quant.package,type:0
+msgid "Virtual set"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model,name:stock_autoprint.model_stock_package_add
+msgid "Wizard model to add package into a quotation"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model,name:stock_autoprint.model_stock_package_move
+msgid "Wizard model to move package into a quotation"
+msgstr ""
+
+#. module: stock_autoprint
+#: code:addons/stock_autoprint/models/stock_quant.py:121
+#: selection:stock.quant.package,type:0
+#, python-format
+msgid "airplane"
+msgstr ""
+
+#. module: stock_autoprint
+#: model:ir.model,name:stock_autoprint.model_res_config_settings
+msgid "res.config.settings"
 msgstr ""
 

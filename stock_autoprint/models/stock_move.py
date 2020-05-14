@@ -8,8 +8,12 @@ from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
+
 class StockMove(models.Model):
     _inherit = "stock.move"
+
+    sourced_move_ids = fields.One2many('stock.move', 'origin_sourced_move_id', 'All fallowed moves', help='Optional: all fallowed moves created from source move')
+    origin_sourced_move_id = fields.Many2one('stock.move', 'Origin fallow move', copy=False, help='Move that created the fallow move')
 
     def write(self, vals):
         res = super(StockMove, self).write(vals)
@@ -20,9 +24,16 @@ class StockMove(models.Model):
             self.picking_id.with_context(ctx)._put_in_pack()
         return res
 
+    #def _action_done(self):
+    #    moves_todo = super(StockMove, self)._action_done()
+    #    for line in moves_todo.mapped('move_line_ids').filtered(lambda r: r.package_id):
+    #        line.mapped('package_id').mapped('quant_ids').filtered(lambda r: r.product_id.id == line.product_id.id).write({'package_id': False})
+    #    return moves_todo
+
     def _split_move_line(self):
         ctx = self.env.context.copy()
         ctx.update(dict(force_split=True))
+        operation_ids = False
         for pick in self.picking_id.filtered(lambda p: p.state not in ('done', 'cancel')):
             operations = pick.move_line_ids.filtered(lambda o: o.product_uom_qty > 0.0 and o.qty_done > 0 and not o.split_line)
             operation_ids = self.env['stock.move.line']
@@ -63,7 +74,7 @@ class StockMove(models.Model):
                                 break
                         else:
                             lot_id = lot_id or operation.split_lot_id
-                            result_package_id = result_package_id or operation.result_package_id
+                            result_package_id = result_package_id or operation.result_package_id.id
                             owner_id = owner_id or operation.owner_id
                             done_to_keep = done_to_keep or operation.qty_done
 
@@ -90,3 +101,13 @@ class StockMove(models.Model):
         return {
                 "type": "ir.actions.do_nothing",
                 }
+
+
+class ProcurementRule(models.Model):
+    _inherit = 'procurement.rule'
+
+    def _get_stock_move_values(self, product_id, product_qty, product_uom, location_id, name, origin, values, group_id):
+        result = super(ProcurementRule, self)._get_stock_move_values(product_id, product_qty, product_uom, location_id, name, origin, values, group_id)
+        if values.get('location_src_id', False):
+            result['location_id'] = values['location_src_id']
+        return result

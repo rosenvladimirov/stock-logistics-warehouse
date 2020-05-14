@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]/field[@name='move_line_ids']" position="after">
+                <field name="diff_move_ids">
+                    <tree>
+                        <field name="product_id"/>
+                        <field name="product_uom_qty"/>
+                        <field name="diff_product_uom_qty"/>
+                        <field name="reserved_availability"/>
+                        <field name="quantity_done"/>
+                        <field name="product_uom"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>

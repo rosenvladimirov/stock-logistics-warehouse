@@ -10,23 +10,31 @@ class SaleOrderLine(models.Model):
 
     @api.multi
     def invoice_line_create(self, invoice_id, qty):
+        invoice_policy_order = {}
+        for move in self.mapped('move_ids'):
+            invoice_policy_order[move.id] = any([x.id for x in move.mapped('move_line_ids') if x.product_id.invoice_policy == 'order'])
         self.mapped(
             'move_ids'
-        ).filtered(
-            lambda x: x.state == 'done' and
-            not x.invoice_line_id and
-            not x.location_dest_id.scrap_location and
-            x.location_dest_id.usage == 'customer'
-        ).mapped(
-            'picking_id'
-        ).write({'invoice_ids': [(4, invoice_id)]})
+            ).filtered(
+                lambda x: invoice_policy_order[x.id] or
+                x.state == 'done' and
+                not x.invoice_line_id and
+                not x.location_dest_id.scrap_location and
+                x.location_dest_id.usage == 'customer'
+            ).mapped(
+                'picking_id'
+            ).write({'invoice_ids': [(4, invoice_id)]})
         return super(SaleOrderLine, self).invoice_line_create(invoice_id, qty)
 
     @api.multi
     def _prepare_invoice_line(self, qty):
         vals = super(SaleOrderLine, self)._prepare_invoice_line(qty)
+        invoice_policy_order = {}
+        for move in self.mapped('move_ids'):
+            invoice_policy_order[move.id] = any([x.id for x in move.mapped('move_line_ids') if x.product_id.invoice_policy == 'order'])
         move_ids = self.mapped('move_ids').filtered(
-            lambda x: x.state == 'done' and
+            lambda x: invoice_policy_order[x.id] or
+            x.state == 'done' and
             not x.invoice_line_id and
             not x.scrapped and (
                 x.location_dest_id.usage == 'customer' or

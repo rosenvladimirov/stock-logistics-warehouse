@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 class Picking(models.Model):
     _inherit = "stock.picking"
 
-    user_id = fields.Many2one('res.users', string='Warehauseperson', index=True, track_visibility='onchange')
+    user_id = fields.Many2one('res.users', string='Warehouseperson', index=True, track_visibility='onchange')
 
     @api.model
     def create(self, vals):

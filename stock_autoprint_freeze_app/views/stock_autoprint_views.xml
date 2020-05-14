@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="freeze_pack_menu_root"
+            name="Instruments"
+            web_icon="stock_autoprint_freeze_app,static/description/icon.png"
+            sequence="30"/>
+
+    <menuitem id="menu_stock_package_inventory_control" name="Master Data" parent="freeze_pack_menu_root" sequence="4"/>
+
+    <menuitem id="menu_package_category_in_config_stock" name="Configuration" parent="freeze_pack_menu_root" sequence="5"/>
+
+    <menuitem id="menu_package_category_form"
+        action="stock_autoprint.action_package_category_form"
+        name="Package Tags"
+        sequence="1" parent="menu_package_category_in_config_stock"/>
+
+    <menuitem id="menu_packages"
+        name="Boxes"
+        parent="menu_stock_package_inventory_control"
+        action="stock_autoprint_freeze_app.action_package_view"
+        groups="stock.group_tracking_lot"
+        sequence="102"/>
+
+</odoo>

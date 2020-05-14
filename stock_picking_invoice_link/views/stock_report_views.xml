@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="account_invoices"
+            model="account.invoice"
+            string="Delivery slip"
+            report_type="qweb-pdf"
+            name="account.report_deliveryslip"
+            file="account.report_deliveryslip"
+            print_report_name="'Delivery Slip - %s' % object.partner_id.name or ''"
+        />
+    </data>
+</odoo>

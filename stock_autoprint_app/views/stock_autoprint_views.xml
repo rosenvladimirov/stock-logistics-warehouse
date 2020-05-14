@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="packages_menu_root"
+            name="Packages"
+            web_icon="stock_autoprint_app,static/description/icon.png"
+            sequence="30"/>
+
+    <menuitem id="menu_stock_package_inventory_control" name="Master Data" parent="packages_menu_root" sequence="4"/>
+
+    <menuitem id="menu_package_category_in_config_stock" name="Configuration" parent="packages_menu_root" sequence="5"/>
+
+    <menuitem id="menu_package_category_form"
+        action="stock_autoprint.action_package_category_form"
+        name="Package Tags"
+        sequence="1" parent="menu_package_category_in_config_stock"/>
+
+    <menuitem id="menu_packages"
+        name="Packages"
+        parent="menu_stock_package_inventory_control"
+        action="stock.action_package_view" groups="stock.group_tracking_lot" sequence="102"/>
+
+</odoo>

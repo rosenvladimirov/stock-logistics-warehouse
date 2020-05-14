@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="product_packaging_delivery_form">
+        <field name="name">product.packaging.form.delivery</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="delivery.product_packaging_delivery_form"/>
+        <field name="arch" type="xml">
+            <field name="barcode" position="after">
+                <field name="freeze"/>
+            </field>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="product_packaging_delivery_tree">
+        <field name="name">product.packaging.tree.delivery</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="delivery.product_packaging_delivery_tree"/>
+        <field name="arch" type="xml">
+            <field name="barcode" position="after">
+                <field name="freeze"/>
+            </field>
+        </field>
+    </record>
+    <record id="quant_package_search_view" model="ir.ui.view">
+        <field name="name">stock.quant.package.freeze.filter</field>
+        <field name="model">stock.quant.package</field>
+        <field name="inherit_id" ref="stock.quant_package_search_view"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <filter string="Instruments" name="freeze" domain="[('packaging_id.freeze','=',True)]"/>
+                <filter string="Boxes" name="moved" domain="[('packaging_id.freeze','=',False)]"/>
+            </field>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="stock.action_package_view">
+        <field name="name">Packages</field>
+        <field name="res_model">stock.quant.package</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'search_default_moved': True}</field>
+        <field name="help" type="html">
+            <p>Packages are usually created by pack operations made on transfers and can contains several different products. You can then reuse a package to move its whole content somewhere else, or to pack it into another bigger package. A package can also be unpacked, allowing the disposal of its former content as single units again.
+            </p>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_package_view">
+        <field name="name">Packages</field>
+        <field name="res_model">stock.quant.package</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'search_default_freeze': True}</field>
+        <field name="help" type="html">
+            <p>Packages are usually created by pack operations made on transfers and can contains several different products. You can then reuse a package to move its whole content somewhere else, or to pack it into another bigger package. A package can also be unpacked, allowing the disposal of its former content as single units again.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -22,6 +22,8 @@
     'data': [
         'views/stock_view.xml',
         'views/account_invoice_view.xml',
+        'views/report_deliveryslip.xml',
+        'views/stock_report_views.xml',
     ],
     'installable': True,
 }
